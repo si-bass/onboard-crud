@@ -7,6 +7,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -62,6 +63,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e): Response
     {
+        if ($e instanceof NotFoundHttpException) {
+            return response()->json(HttpResponse::notFound(), 404);
+        }
+
         Log::channel('stderr')->error($e->getMessage());
         return response()->json(HttpResponse::internalServerError(), 500);
     }
