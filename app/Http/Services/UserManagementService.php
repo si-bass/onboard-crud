@@ -22,7 +22,7 @@ class UserManagementService implements UserManagementServiceInterface
     public function storeUser(UserStoreRequest $request): array
     {
         $user = $this->userRepo->create(attributes: $request->validated());
-        return HttpResponse::created(data: $user->toArray());
+        return HttpResponse::created();
     }
 
     public function updateUser(int $id, UserUpdateRequest $request): array
@@ -33,7 +33,7 @@ class UserManagementService implements UserManagementServiceInterface
             return HttpResponse::notFound(message: 'User id ' . $id . ' not found');
         }
 
-        return HttpResponse::ok(data: $user->toArray());
+        return HttpResponse::ok();
     }
 
     public function changePasswordUser(int $id, UserChangePasswordRequest $request): array
