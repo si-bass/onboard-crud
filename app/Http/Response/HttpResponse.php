@@ -19,7 +19,7 @@ class HttpResponse extends Facade
     public static function ok(array $data = []): array
     {
         return Arr::collapse([
-            self::format(200, 'Successful'), $data
+            self::format(200, 'Successful'), empty($data) ? [] : ['data' => $data]
         ]);
     }
 
@@ -27,7 +27,7 @@ class HttpResponse extends Facade
     public static function created(array $data = []): array
     {
         return Arr::collapse([
-            self::format(201, 'Successful'), $data
+            self::format(201, 'Successful'), empty($data) ? [] : ['data' => $data]
         ]);
     }
 
