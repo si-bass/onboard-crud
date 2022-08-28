@@ -20,17 +20,17 @@ class UserRepository implements UserRepositoryInterface
 
     public function findById(int $id): ?User
     {
-        return $this->model->find($id);
+        return $this->userModel->find($id);
     }
 
     public function findAll(): Collection
     {
-        return $this->model->get();
+        return $this->userModel->get();
     }
 
     public function create(array $attributes): User
     {
-        return $this->model->create(attributes: $attributes);
+        return $this->userModel->create(attributes: $attributes);
     }
 
     public function update(int $id, array $attributes): ?User
