@@ -44,7 +44,7 @@ class UserManagementService implements UserManagementServiceInterface
             return HttpResponse::notFound(message: 'User id ' . $id . ' not found');
         }
 
-        return HttpResponse::ok(data: $user->toArray());
+        return HttpResponse::ok();
     }
 
     public function setRolesUser(int $id, UserSetRolesRequest $request): array
@@ -55,7 +55,7 @@ class UserManagementService implements UserManagementServiceInterface
             return HttpResponse::notFound(message: 'User or role not found');
         }
 
-        return HttpResponse::ok(data: $user->toArray());
+        return HttpResponse::ok();
     }
 
     public function deleteUser(int $id): array
@@ -77,11 +77,15 @@ class UserManagementService implements UserManagementServiceInterface
             return HttpResponse::notFound(message: 'User id ' . $id . ' not found');
         }
 
-        return HttpResponse::ok(data: $user->toArray());
+        return HttpResponse::ok(data: [
+            'user' => $user->toArray()
+        ]);
     }
 
     public function getUsers(): array
     {
-        return HttpResponse::ok(data: $this->userRepo->findAll()->toArray());
+        return HttpResponse::ok(data: [
+            'users' => $this->userRepo->findAll()->toArray()
+        ]);
     }
 }
