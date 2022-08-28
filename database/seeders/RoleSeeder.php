@@ -15,6 +15,11 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
+        Role::create([
+            'name' => 'admin',
+            'display_name' => 'Administrator',
+        ]);
+
         for ($i = 1; $i <= 10; $i++) {
             Role::create([
                 'name' => fake()->unique()->word(),
