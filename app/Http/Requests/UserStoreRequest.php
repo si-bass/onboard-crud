@@ -31,9 +31,10 @@ class UserStoreRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'username' => ['required', 'string', Rule::unique('users', 'username')],
             'password' => ['required_with:password_confirm', 'same:password_confirm', 'min:6'],
             'password_confirm' => ['min:6'],
-            'roles' => ['required', 'array', 'min:1', 'string'],
+            'roles' => ['required', 'array', 'min:1'],
             'roles.*' => ['in:' . implode(",", Role::all()->map(fn ($role) => $role->name)->toArray())]
         ];
     }
