@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix(prefix: 'user')->group(function () {
+Route::prefix(prefix: 'users')->group(function () {
     Route::post(uri: '/', action: [UserController::class, 'store']);
     Route::put(uri: '/{id}', action: [UserController::class, 'update']);
     Route::patch(uri: '/{id}/password', action: [UserController::class, 'updatePassword']);
